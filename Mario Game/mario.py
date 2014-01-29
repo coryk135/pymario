@@ -1,4 +1,4 @@
-from pygamehelper import *
+from pygamehelper2 import *
 from pygame import *
 from pygame.locals import *
 from vec2d import *
@@ -29,10 +29,10 @@ class player:
 		self.rightdown = 0 #check to see if the right key is down
 		self.leftdown = 0
 		
-		self.acceleration = .5 #the acceleration of the player
+		self.acceleration = 1 #the acceleration of the player
 		
 		self.deaccelerate = 0 #check to see if the player needs to accelerate
-		self.deacceleration = 1 #the deacceleration of the player
+		self.deacceleration = .2 #the deacceleration of the player
 		
 		
 		self.jumpvel = -10 #jump power
@@ -57,7 +57,7 @@ class Starter(PygameHelper):
 		self.bg= background()
 		self.me= player()
 		
-		self.gravity= vec2d(0, 2)
+		self.gravity= vec2d(0, 1)
 		
 		self.runitr = 0
 		
@@ -227,15 +227,17 @@ class Starter(PygameHelper):
 		
 		#create background
 		self.screen.blit(self.bg.img,(self.bg.pos))
-		print 'asdflajkhsdf'
+		
 		#if self.me.dir == 1: face right
 		#if self.me.dir == 0: face left
 		
 		if self.me.action == 0:
 			self.screen.blit(self.standing, self.me.pos- (self.standing.get_width()/2, 0))
 		elif self.me.action == 1:
-			if self.runitr == 6:
-				self.runitr = 1
+		
+			self.runitr = self.runitr%5 + 1
+			#if self.runitr == 6:
+			#	self.runitr = 1
 			self.runitr+= 1
 			if self.runitr == 1:
 				self.screen.blit(self.running1, self.me.pos- (self.standing.get_width()/2, 0))
@@ -247,9 +249,11 @@ class Starter(PygameHelper):
 				self.screen.blit(self.standing, self.me.pos- (self.standing.get_width()/2, 0))
 			if self.runitr == 5:
 				self.screen.blit(self.running1, self.me.pos- (self.standing.get_width()/2, 0))
+				
+				
 		elif self.me.action == 3:
 			self.screen.blit(self.jumping, self.me.pos- (self.standing.get_width()/2, 0))
 		#self.screen.blit(self.player, self.me.pos- (self.player.get_width()/2, 0))
 		
 s = Starter()
-s.mainLoop(30)
+s.mainLoop(60)
