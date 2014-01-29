@@ -3,7 +3,7 @@ pymario
 
 My first attempt at learning python around Spring 2012
 
-Must use python2
+**Must use python2**
 
 Run with:
 ```bash
