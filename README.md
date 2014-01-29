@@ -9,3 +9,10 @@ Run with:
 ```bash
 python mario.py
 ```
+
+Controls:
+A: move left
+D: move right
+X: jump
+ESC: exit
+
